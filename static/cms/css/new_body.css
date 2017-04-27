@@ -1,0 +1,53 @@
+.md_box{ width:600px; float:left; padding:13px 21px 0 12px;}
+.md_hot{ height:26px; width:600px; clear:both; border-bottom:1px solid #DBDBDB; position:relative; margin-bottom:10px;}
+.md_hot span{ height:26px; line-height:26px; position:absolute; left:10px; top:0; color:#000;}
+.md_hot span strong{ font:bold 14px/26px "宋体"; color:#D4012E;}
+.Slim_mid_link{ width:600px; float:left; padding-bottom:9px; height:92px; overflow:hidden; border-bottom:1px dashed #DBDBDB;}
+.Slim_mid_link h1, .Slim_mid_link h2{ font:normal 20px/24px 微软雅黑,"黑体"; text-align:center; padding-bottom:9px;}
+.Slim_mid_link ul{ width:595px; padding:0 5px 0px 8px; clear:both; color:#5D5D5D; line-height:22px;}
+.Slim_mid_link ul a{ color:#3E3A39;}
+.Slim_mid_link ul li{ float:left; white-space:nowrap; width:180px; font-size:13px; padding-right:5px; line-height:22px; height:22px; overflow:hidden;}
+.Slim_mid_link2{width:600px; float:left; padding-top:12px; background:url(../images/body_new_09.png) left 12px no-repeat; height:59px; overflow:hidden; position:relative;}
+.Slim_mid_link2 span{ float:left; width:16px; font:bold 14px/22px "宋体"; color:#D4012E; position:absolute; left:9px; top:17px;}
+.Slim_mid_link2 ul{ width:570px; float:left; position:absolute; left:35px; overflow:hidden; padding-top:3px;}
+.Slim_mid_link2 ul li{ float:left; padding-left:10px; font:normal 14px/24px "宋体"; width:180px; overflow:hidden; height:24px;}
+.md_hot2{ height:26px; width:600px; clear:both; border-bottom:1px solid #DBDBDB; position:relative; padding-top:10px;}
+.md_hot2 span{ height:26px; line-height:26px; position:absolute; left:10px; top:10px; color:#000;}
+.md_hot2 span strong{ font:bold 14px/26px "宋体"; color:#191919;}
+.md_hot2 i{ position:absolute; right:2px; top:10px; line-height:26px;}
+.md_hot2 i a{ color:#191919;}
+.artlist{ float:left; padding-top:16px; padding-left:8px;}
+.artlist dl{ float:left; width:92px; height:92px; overflow:hidden;}
+.artlist dl img{ width:82px; height:82px; padding:4px; border:1px solid #CECECE;}
+.artlist strong{ width:245px; float:left; padding:6px 0 14px 23px; font-size:12px;}
+.artlist strong a{ color:#333;}
+.artlist span{ float:left; padding-left:14px; width:254px; line-height:20px; color:#595757; text-indent:20px;}
+.artlist2{ padding-left:8px; float:left; font:normal 12px/24px "宋体"; padding-top:3px;}
+.artlist2 li{ float:left; width:170px; height:24px; overflow:hidden; padding-left:10px; background:url(../images/new_index_03.png) no-repeat scroll -902px -282px transparent}
+.right_box{ float:left; width:245px; padding-top:3px; height:517px; overflow:hidden;}
+.right_div{ width:245px; float:left; background:#fff;}
+.right_div .r_top{ width:245px; padding-top:10px; padding-left:1px;height:28px; float:left; overflow:hidden; background:#fff; border-bottom:1px solid #D3D3D4;}
+.right_div .r_top li{ cursor:pointer; width:81px; height:28px; float:left; background:url(../images/body_new_18.png) no-repeat; text-align:center; font:normal 14px/28px "宋体";}
+.right_div .r_top li.bot{background:url(../images/body_new_16.png) no-repeat; color:#fff;}
+.right_div .padding_box{ float:left; height:478px; width:245px;padding-top:10px}
+.right_div .padding_box dl{ background:#fff; width:235px; float:left; padding:13px 0 8px 5px; overflow:hidden;}
+.right_div .padding_box dl dd{ width:102px; height:102px; float:left;}
+.right_div .padding_box dl dd.bd{ width:82px; height:42px; float:left;}
+.right_div .padding_box dl dd img{ width:100px; height:100px; border:1px solid #D0D0D0; float:left;}
+.right_div .padding_box dl dd img.brand { width:80px; height:40px; border:1px solid #D0D0D0; float:left;}
+.right_div .padding_box dl dt{ float:left; width:130px; overflow:hidden;}
+.right_div .padding_box dl dt.db{ float:left; width:150px; overflow:hidden;}
+.right_div .padding_box dl dd.bd strong{ width:80px; float:left; line-height:20px; padding-left:3px; overflow:hidden;}
+.right_div .padding_box dl strong{ width:125px; float:left; line-height:20px; padding-left:5px; overflow:hidden;}
+.right_div .padding_box dl strong a{ color:#333;}
+.right_div .padding_box dl span{ float:left; padding-left:7px; width:123px; line-height:20px; color:#595757; overflow:hidden;}
+.right_div .padding_box dl span a{ color:#D4012E;}
+.right_div .padding_box .line{background:url(../images/body_new_34.png) repeat-x; height:5px; overflow:hidden; width:245px; float:left;margin-top: 10px;}
+.right_div .padding_box ul{ float:left; width:205px; background:url(../images/body_new_42.png) 8px 15px no-repeat #fff; font:normal 12px/23px "宋体"; padding-left:32px; padding-top:10px;}
+.right_div .padding_box ul li{ height:23px; float:left; width:196px;}
+.testbox01{ float:left; height:142px; overflow:hidden; width:247px;}
+.testbox01 ul{ float:left; padding:34px 0 0 15px; line-height:24px; background:url(../images/body_new_49.png) 14px 12px no-repeat;}
+.testbox01 ul .text{ width:22px; height:20px; border:1px solid #919191;}
+.testbox01 ul .submit{background:url(../images/body_new_48.png) no-repeat; border:none; width:48px; height:19px; overflow:hidden;}
+.noi{ display:none;}
+

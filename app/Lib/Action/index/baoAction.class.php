@@ -1,0 +1,4 @@
+<?php
+?>
+<?php
+class baoAction extends FrontAction {public function index(){$this->_config_seo(array('title' => '商家报名中心' , ));$this->assign(base64_decode('bmF2X2N1cnJy'), base64_decode('YmFvbWluZw=='));$this->display();}public function yaoqiu(){$this->_config_seo(array('title' => '活动要求 — ' , ));$this->assign(base64_decode('bmF2X2N1cnJy'), base64_decode('eWFvcWl1'));$this->display();}public function shenhe(){$this->_config_seo(array('title' => '审核说明 — ' , ));$this->assign(base64_decode('bmF2X2N1cnJy'), base64_decode('c2hlbmhl'));$this->display();}public function shier(){$this->_config_seo(array('title' => '1212活动报名 — ' , ));$this->assign(base64_decode('bmF2X2N1cnJy'), base64_decode('c2hpZXI='));$this->display();}}unset($zym_3);?>

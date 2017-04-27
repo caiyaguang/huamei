@@ -1,0 +1,1 @@
+<?php	return array ( 'qq' => array ( 'code' => 'qq', 'name' => 'QQ登录', 'config' => 'a:2:{s:7:"app_key";s:0:"";s:10:"app_secret";s:0:"";}', ), 'sina' => array ( 'code' => 'sina', 'name' => '新浪微博登录', 'config' => 'a:2:{s:7:"app_key";s:0:"";s:10:"app_secret";s:0:"";}', ), );?>

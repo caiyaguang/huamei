@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+/* 
+	Theme Name: HuaMeitaoke
+	Theme URL: http://www.138gzs.com
+	Description: 一款专业折扣特价淘客程序！
+	Author: newpi
+	Author URI: http://www.138gzs.com
+	Version: 7.0
+*/
+/*-------------通用-------------*/
+html { overflow-x: hidden; }
+body, blockquote, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul { margin: 0; padding: 0 }
+body, button, input, select, textarea { font: 12px/1.5 "Microsoft Yahei", "Hiragino Sans GB", tahoma, arial }
+body { background-color: #F3F3F3; }
+h1, h2, h3, h4, h5, h6 { font-size: 100% }
+address, cite, dfn, em, var, i { font-style: normal; }
+small { font-size: 12px }
+ul, ol, li { list-style-type: none; }
+a { text-decoration: none; color: #5e5e5e; }
+a:hover { color: #ff6c01; }
+.blue_link:link, .blue_link:visited { color: #008EF0; }
+fieldset, img { border: 0 }
+.wide { width: 1072px; }
+.narrow { width: 940px; }
+.marked { border: 1px solid #FFFFFF; background: #F3F3F3; color: #e63b53; margin-bottom: 10px; padding-left: 55px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; padding: 15px 15px 10px 15px; }
+.aligncenter { clear: both; display: block; margin-left: auto; margin-right: auto; }
+/*----login----*/
+.m_t { margin-top: 30px; }
+.login .indicator, .register .indicator { position: relative; display: block; height: 16px; margin: 20px 0 0 30px; padding-top: 10px; font-size: 16px; font-weight: 800; z-index: 1; }
+/*----注册类型----*/
+.register_type { position: absolute; width: 1070px; height: 350px; margin: 60px auto; border: 1px #DEDEDE solid; background: #F7F7F7; }
+.register_type .left { position: relative; width: 535px; height: 350px; float: left; }
+.register_type .right { position: relative; width: 534px; height: 350px; float: left; border-left: 1px solid #DEDEDE; }
+.register_type img { display: block; width: 160px; margin: 100px 0 0 25px; float: left; }
+.register_type .content { position: relative; width: 295px; height: 350px; float: left; margin-left: 28px; }
+.register_type .c_top { height: 179px; border-bottom: 1px dashed #d9d9d9; }
+.register_type .c_top h1 { position: absolute; margin-top: 110px; color: #4c4c4c; font-weight: 700; font-size: 20px; }
+.register_type .c_top p { position: absolute; margin-top: 150px; font-size: 13px; color: #999; }
+.register_type .c_bot { height: 200px; }
+.register_type .c_bot p { position: absolute; margin: 37px 0 0 105px; font-size: 14px; color: #4C4C4C; }
+.register_type .c_bot .button { position: absolute; width: 120px; height: 34px; margin: 30px 0 0 160px; border: 0; display: inline-block; overflow: hidden; vertical-align: middle; line-height: 34px; font-size: 14px; font-weight: 500; color: #FFFFFF; border-radius: 3px; cursor: pointer; text-align: center; zoom: 1; }
+.register_type .c_bot .blb { background: #00B968; }
+.register_type .c_bot .brb { background: #e63b53; }
+/*-------------内容-------------*/
+#wrapper { width: 100%; margin-bottom: -20px; }
+/*----login----*/
+.login_main { height: 600px; margin: 0 auto; }
+.bt{font:25px "Microsoft YaHei";margin:40px 0 30px 0;text-align:center}

@@ -1,0 +1,3 @@
+<?php
+//000000003600a:5:{i:0;a:6:{s:2:"id";s:1:"4";s:4:"name";s:18:"飞天侠淘宝客";s:3:"img";s:0:"";s:3:"url";s:22:"http://bbs.138gzs.com/";s:5:"ordid";s:1:"1";s:6:"status";s:1:"1";}i:1;a:6:{s:2:"id";s:1:"1";s:4:"name";s:15:"淘宝客程序";s:3:"img";s:0:"";s:3:"url";s:21:"http://bbs.138gzs.com";s:5:"ordid";s:1:"2";s:6:"status";s:1:"1";}i:2;a:6:{s:2:"id";s:1:"3";s:4:"name";s:15:"华美淘宝客";s:3:"img";s:0:"";s:3:"url";s:24:"http://jp.myepai.com.cn/";s:5:"ordid";s:1:"3";s:6:"status";s:1:"1";}i:3;a:6:{s:2:"id";s:1:"2";s:4:"name";s:9:"飞天侠";s:3:"img";s:0:"";s:3:"url";s:21:"http://www.138gzs.com";s:5:"ordid";s:1:"4";s:6:"status";s:1:"1";}i:4;a:6:{s:2:"id";s:1:"5";s:4:"name";s:15:"淘宝客论坛";s:3:"img";s:0:"";s:3:"url";s:21:"http://bbs.138gzs.com";s:5:"ordid";s:1:"5";s:6:"status";s:1:"1";}}
+?>
