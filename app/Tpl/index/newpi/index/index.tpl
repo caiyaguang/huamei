@@ -5,7 +5,7 @@
 
 </head>
 <body>
-{:R('advert/index', array(13), 'Widget')}
+{:R('advert/index', array(15), 'Widget')}
 <include file="public:header" />
 
 <include file="public:lunbo" />     
