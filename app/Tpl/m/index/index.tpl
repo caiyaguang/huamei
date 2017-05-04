@@ -27,7 +27,14 @@
 <include file='public:lunbo'/>
   <div class="index_w">
 
-    <!-- <ul class="category"> -->
+    <ul class="category">
+
+
+    <ftx:nav type="lists" style="other">
+
+	<volist name="data" id="val">
+
+      <!-- <li class="huamei_1" data-url="{$val.link}"> -->
     <li 
 <?php
 if ($val[name]=='更多'){
@@ -37,13 +44,6 @@ echo  'class="huamei_1" data-url="'.$val[link].'"';
 }
 ?>
 >
-
-    <ftx:nav type="lists" style="other">
-
-	<volist name="data" id="val">
-
-      <li class="huamei_1" data-url="{$val.link}">
-
         <span>
 
           <img src="{:attach($val['icon'],'m')}" alt="{$val.name}">
