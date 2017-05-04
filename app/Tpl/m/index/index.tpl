@@ -27,7 +27,16 @@
 <include file='public:lunbo'/>
   <div class="index_w">
 
-    <ul class="category">
+    <!-- <ul class="category"> -->
+    <li 
+<?php
+if ($val[name]=='更多'){
+echo  ' class="all_o" onclick='."'".'$(".classify .btn-type").click()'."'";
+}else{
+echo  'class="huamei_1" data-url="'.$val[link].'"';
+}
+?>
+>
 
     <ftx:nav type="lists" style="other">
 
