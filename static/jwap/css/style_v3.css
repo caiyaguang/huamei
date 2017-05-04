@@ -589,7 +589,6 @@ height:22px;
 width: 100%;
 font-size: 12px;
 color:#ccc;
-
 height:22px;
 }
 .list-prices .goc .good-btns {
@@ -1491,7 +1490,7 @@ margin: 0 10px;}
 .better_info .by{ background-position: -148px 0;}
 .better_info span{display: block; margin-top: 10%; font-size: 12px;color: #999;}
 .tab1 img{ display: inherit;max-width: 100%;margin: 0 auto;}
-.tabs1 img{ display: inherit;max-width: 100%;margin: 0 auto;height:auto!important}
+.tabs1 img{ display: inherit;max-width: 100%;margin: 0 auto;}
 .item_botton{ width:48px; height:26px; position: absolute; bottom: 3%; right: 2%; background: #000; opacity:.3;border-radius: 30px; color: #fff; text-align: center; font-size: 16px; line-height: 26px;z-index:10;}
 .user-like{ background: #fff; margin-bottom:3%;border-bottom:#e5e5e5 solid 1px;border-top:#e5e5e5 solid 1px;}
 .user-like h3{ margin-left: 3%;}
@@ -2543,7 +2542,7 @@ width: 59%;
 .lingquan{width: 48px;height: 52px;position: absolute;right: 0px;top: 0px;border-radius: 1px;text-align: center;z-index: 15;}
 .lingquan a span{width: 100%;height: 32px;font-size: 14px;display: block;background: #f9117e;color: #fff;overflow: hidden;line-height: 16px;}
 .lingquan a span em{font-size: 14px;color: #fff;font-style: normal;line-height: 12px;font-weight: bold;}
-.lingquan a b{width: 100%;height: 20px;display: inline-block;background:url(/static/newpi/images/qulingquan_ico1.png) no-repeat;background-size:100% 100%;overflow: hidden;}
+.lingquan a b{width: 100%;height: 20px;display: inline-block;background:url(/static/newpi/images/qulingquan_ico.png) no-repeat;background-size:100% 100%;overflow: hidden;}
 
 .list-price .title-tips01 {
     padding: 0 5px;
@@ -2576,97 +2575,3 @@ width: 59%;
     position: fixed !important;
     width:100%;
     z-index:300;}
-
-
-.goto-div{
-  position:absolute;
-  bottom:5px;
-  height:40px;
-  left:0;
-  width:100%;
-  display:none;
-  
-  overflow:hidden;
-}
-.goto-btn {
-  display:block;
-  width:128px;
-  height:30px;
-  line-height:30px;
-  margin:11px auto;
-  text-align:center;
-  background-color: #FF5000;
-  font-size:12px;
-  color: #FFF;
-}
-
-
-
-
-.J_fashionRelatedItem{float:left;background-color: #fff;}
-.fashion-related-item {
-    padding-top: 20px!important;
-    padding-left: 14px!important;
-    font-size: 18px!important;
-    color: #000!important;
-	font-family: 'Microsoft Yahei',arial!important;
-	float:left;
-}
-.fashion-related-item p {
-    text-align: center;
-	font-size: 18px;
-	font-family: 'Microsoft Yahei',arial;
-}
-.fashion-related-item a{
-	text-decoration: none;
-}
-
-.fashion-related-item ul {
-    margin-top: 5px;
-}
-.fashion-related-item ul li.item {
-    width: 30%;
-    height: 100%;
-    float: left;
-    margin-right: 7px;
-    margin-bottom: 5px;
-}
-.page-items {
-    padding-left: 27px;
-    padding-top: 46px;
-    padding-right: 28px;
-    line-height: 1;
-    border-bottom: 1px solid #ededed;
-}
-.page-items .fashion-content {
-    padding-top: 28px;
-}
-.page-items .fashion-content .content-anchor {
-    position: relative;
-    margin-bottom: 20px;
-    max-width: 100%;
-}
-.page-items .fashion-content .content-pic {
-    margin-bottom: 40px;
-    text-align: center;
-}
-.fashion-related-item ul li.item .title {
-    font-size: 14px;
-    color: #666!important;
-    line-height: 20px;
-    vertical-align: middle;	
-	font-family: 'Microsoft Yahei',arial;
-	height: 20px;
-    overflow: hidden;
-    float: left;
-}
-.fashion-related-item ul li.item .price {
-    line-height: 20px;
-    vertical-align: middle;
-    display: block;
-    font-size: 14px;
-    color: #b0b0b0;
-}
-.fashion-related-item ul li.item .price em {
-    color: #000;
-}
