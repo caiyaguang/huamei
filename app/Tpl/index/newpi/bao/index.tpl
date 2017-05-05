@@ -47,7 +47,7 @@
                         </dl>
                         <div class="part-activity-bottom clearfix"> <span><a target="_blank" href="{:U('baojiu/add')}" class="bdr3">立即报名 </a></span> </div>
                         <div class="part-activity-date">
-                            <p>活动时间：<span>2015.10.01 - 2016.10.01</span></p>
+                            <p>活动时间：<span>2015.10.01 - 2017.10.01</span></p>
                         </div>
                                             </div>
                                         <div class="part-activity-col left">
@@ -58,7 +58,7 @@
                         </dl>
                         <div class="part-activity-bottom clearfix"> <span><a target="_blank" href="{:U('baoshijiu/add')}" class="bdr3">立即报名 </a></span> </div>
                         <div class="part-activity-date">
-                            <p>活动时间：<span>2015.10.01 - 2016.10.01</span></p>
+                            <p>活动时间：<span>2015.10.01 - 2017.10.01</span></p>
                         </div>
                                             </div>
                                         <div class="part-activity-col left" style="margin-right:18px;">
