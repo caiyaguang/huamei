@@ -76,10 +76,10 @@
 					</td>
 					<td><div class="green">
 					<if condition="$val.pass eq 1"><span>恭喜！您的商品已通过审核</span><span><a href="{:U('item/index',array('id'=>$val['id']))}"  target="_blank">查看</a><elseif condition="$val.pass eq 0" /><if condition="$val.status eq 'fail'"><span>{$val.fail_reason}</span><else/><span>缴费后二审排期</span></if>
-                    <br><form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK"><input name="optEmail" type="hidden" value="你自己的支付宝@qq.com" /><input name="payAmount" type="hidden" value="" /><input id="title" name="title" type="hidden" value="活动报名" /><input name="memo" type="hidden" value="备注网站用户名,和报名周期" /><input name="pay" type="image" value="转账" src="/static/image/btn-index.png" /></form></td>  
+                    <br><form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK"><input name="optEmail" type="hidden" value="531618401@qq.com" /><input name="payAmount" type="hidden" value="" /><input id="title" name="title" type="hidden" value="活动报名" /><input name="memo" type="hidden" value="备注网站用户名,和报名周期" /><input name="pay" type="image" value="转账" src="/static/image/btn-index.png" /></form></td>  
                     <elseif condition="$val.pass eq 2" /><span>{$val.fail_reason}</span>
                     
-                    <br><form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK"><input name="optEmail" type="hidden" value="你自己的支付宝@qq.com" /><input name="payAmount" type="hidden" value="" /><input id="title" name="title" type="hidden" value="活动报名" /><input name="memo" type="hidden" value="备注网站用户名,和报名周期" /><input name="pay" type="image" value="转账" src="/static/image/btn-index.png" /></form></td>
+                    <br><form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK"><input name="optEmail" type="hidden" value="531618401@qq.com" /><input name="payAmount" type="hidden" value="" /><input id="title" name="title" type="hidden" value="活动报名" /><input name="memo" type="hidden" value="备注网站用户名,和报名周期" /><input name="pay" type="image" value="转账" src="/static/image/btn-index.png" /></form></td>
                     </if>
 					</div>
 					</td>
