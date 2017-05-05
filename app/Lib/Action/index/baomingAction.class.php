@@ -1,8 +1,4 @@
 <?php
-    vendor('Taobaotop.TopClient');
-    vendor('Taobaotop.RequestCheckUtil');
-    vendor('Taobaotop.ResultSet');
-    vendor('Taobaotop.request.TbkItemInfoGetRequest');
 class baomingAction extends FrontAction {
     public function _initialize() {
         parent::_initialize();
@@ -57,7 +53,8 @@ class baomingAction extends FrontAction {
 		}
 
 	}
-	public function ajaxGetItem() {
+	public function ajaxGetItem()
+{
 
 	if(!isset($_REQUEST['url']))
 	$this->ajaxReturn (0,'未传入商品链接');
@@ -66,7 +63,7 @@ class baomingAction extends FrontAction {
 	$info['orig_id']='';
 	$info['coupon_rate'] = intval(($info['price'] / $info['coupon_price'])) * 1000;
     $this->ajaxReturn(1,'',$info);
-    }
+}
 	/**
      * AJAX提交
      */
@@ -78,15 +75,12 @@ class baomingAction extends FrontAction {
 				$this->ajaxReturn(1005, '商品IID不能为空，请输入宝贝地址获取');
 			}
 			$cate_id			= I('cate_id','', 'trim');
-			$title				= I('title','', 'trim');	
-			$sex				= I('sex','', 'trim');
+			$title				= I('title','', 'trim');			
 			!$title && $this->ajaxReturn(1005, '商品名称不能为空');
 			$realname				= I('realname','', 'trim');
 			$mobile				= I('mobile','', 'trim');
-			$qq				    = I('qq','', 'trim');
+			$qq				= I('qq','', 'trim');
 			$nick				= I('nick','', 'trim');
-			$commission				    = I('commission','', 'trim');
-			$commission_rate				= I('commission_rate','', 'trim');
 			!$nick && $this->ajaxReturn(1005, '掌柜名称不能为空');
 			$sellerId             = I('sellerId',0,'trim');
 			$desc				= I('desc','', 'trim');
@@ -102,16 +96,14 @@ class baomingAction extends FrontAction {
 			$shop_type			= I('shop_type','', 'trim');
 			$intro				= I('intro','', 'trim');
             $likes            = rand(99,9999);
-			
+			$items = $items_mod->where(array('num_iid' => $num_iid))->find();
+			$items && $this->ajaxReturn(1005, L('item_exist'));
 
 			$data['num_iid']			= $num_iid;
-			$data['sex']			    = $sex;
 			$data['cate_id']			= $cate_id;
 			$data['title']				= $title;
 			$data['realname']		    = $realname;
 			$data['mobile']			    = $mobile;
-			$data['commission']				    = $commission;
-			$data['commission_rate']				    = $commission_rate;
 			$data['qq']				    = $qq;
 			$data['nick']				= $nick;
 			$data['price']				= $price;
@@ -119,7 +111,7 @@ class baomingAction extends FrontAction {
 			$data['coupon_start_time']	= strtotime($coupon_start_time);
 			$data['coupon_end_time']	= strtotime($coupon_end_time);
 			$data['inventory']			= $inventory;
-			$data['ems']				= $ems;;
+			$data['ems']				= 1;
 			$data['likes']              = $likes;
 			$data['coupon_rate']        = $coupon_rate;
 			$data['sellerId']           = $sellerId;
@@ -135,23 +127,16 @@ class baomingAction extends FrontAction {
             $data['coupon_start_time']			= strtotime($coupon_start_time);
 		    $data['coupon_end_time']			= strtotime($coupon_end_time);
 			$items_mod->create($data);
-			if($this->_mod->where(array('num_iid'=>$data['num_iid']))->count()){
-			if($items_mod->where(array('num_iid'=>$data['num_iid']))->save()){
-			$resp = $this->fetch('dialog:goods_save_success');
-			$this->ajaxReturn(1, '', $resp);
-			}else{
-				$this->ajaxReturn(0, '数据错误，请检查！');
-			}
-			}else{
 			if($items_mod->add()){
-			$resp = $this->fetch('dialog:goods_add_success');
-			$this->ajaxReturn(1, '', $resp);
+				$resp = $this->fetch('dialog:goods_add_success');
+				$this->ajaxReturn(1, '', $resp);
 			}else{
 				$this->ajaxReturn(0, '数据错误，请检查！');
-			}
 			}
 		}
 	}
+
+ 
 
 	public function my() {
 		$item_mod = M('items');
@@ -214,15 +199,6 @@ class baomingAction extends FrontAction {
 		$this->display();
 	}
 
-	public function recharge()
-	{
-		$this->_config_seo(array(
-            'title' => '充值 — ' ,
-        ));
-		$this->assign('nav_currr', 'recharge');
-		$this->display();
-	}
-
 
 	public function view(){
 		$id = I('id','','trim');
@@ -240,6 +216,39 @@ class baomingAction extends FrontAction {
 		$this->display();
 	}
 
+    /**
+     * AJAX获取宝贝
+     */
+    public function ajaxgetid( )
+{
+/*
+$url = $this->_get( "url","trim");
+if ( $url == "")
+{
+$this->ajaxReturn( 0,l( "please_input").l( "correct_itemurl") );
+}
+if ( !$this->get_id( $url ) )
+{
+$this->ajaxReturn( 0,l( "please_input").l( "correct_itemurl") );
+}
+$iid = $this->get_id( $url );
+$items = m( "items")->where( array(
+"num_iid"=>$iid
+) )->find( );
+if ( $items )
+{
+$this->ajaxReturn( 1005,l( "item_exist") );
+}
+$itemcollect = new itemcollect( );
+$itemcollect->url_parse( $url );
+if ( $item = $itemcollect->fetch_tb( ) )
+{
+$this->ajaxReturn( 1,"",$item );
+}
+$this->ajaxReturn( 0,l( "item_not_excute") );
+*/
+}
+ 
 	/**
      * AJAX提交
      */
@@ -255,7 +264,6 @@ class baomingAction extends FrontAction {
 				$this->ajaxReturn(1005, 'ID不能为空，请返回正常渠道提交！');
 			}
 			$cate_id			= I('cate_id','', 'trim');
-			$sex			    = I('sex','', 'trim');
 			$likes            = rand(99,9999);
 			$sellerId             = I('sellerId',0,'trim');
 			$title				= I('title','', 'trim');
@@ -287,11 +295,11 @@ class baomingAction extends FrontAction {
 
 			$data['cate_id']		= $cate_id;
 			$data['title']			= $title;
-			$data['sex']			= $sex;
 			$data['price']			= $price;
 			$data['realname']		= $realname;
 			$data['mobile']			= $mobile;
-			$data['qq']				    = $qq;			
+			$data['qq']				    = $qq;
+			$data['ems']            = 1;
 			$data['sellerId']       = $sellerId;
 			$data['coupon_rate']    = $coupon_rate;
 			$data['coupon_price']	= $coupon_price;
@@ -320,78 +328,120 @@ class baomingAction extends FrontAction {
 		}
 	}
 
-	public function get_id( $url ) {
-	  $id = 0;
-	  $parse = parse_url( $url );
-	  if ( isset( $parse['query'] ) ) {
-	  parse_str( $parse['query'],$params );
-	  if ( isset( $params['id'] ) ) {
-	  $id = $params['id'];
-	  return $id;
-	  }
-	  if ( isset( $params['item_id'] ) ) {
-	  $id = $params['item_id'];
-	  return $id;
-	  }
-	  if ( isset( $params['default_item_id'] ) ) {
-	  $id = $params['default_item_id'];
-	  }
-	  }
-	  return $id;
-	}
-   }
-   function getInfo($url){
+	public function get_id( $url )
+{
+$id = 0;
+$parse = parse_url( $url );
+if ( isset( $parse['query'] ) )
+{
+parse_str( $parse['query'],$params );
+if ( isset( $params['id'] ) )
+{
+$id = $params['id'];
+return $id;
+}
+if ( isset( $params['item_id'] ) )
+{
+$id = $params['item_id'];
+return $id;
+}
+if ( isset( $params['default_item_id'] ) )
+{
+$id = $params['default_item_id'];
+}
+}
+return $id;
+}
+
+	private function _get_ftx_top() {
+        vendor('Ftxia.TopClient');
+        vendor('Ftxia.RequestCheckUtil');
+        vendor('Ftxia.Logger');
+        $tb_top = new TopClient;
+        $tb_top->appkey = $this->_ftxconfig['app_key'];
+        $tb_top->secretKey = $this->_ftxconfig['app_secret'];
+        return $tb_top;
+    }
+}
+function getInfo($url){
 		$u = parse_url($url);
-        $param = convertUrlQuery($u['query']);        
-        $itemurl = "http://item.taobao.com/item.htm?id=".$param['id'];
-		$itemurl = urlencode($itemurl);
-        $data = getitemInfo($itemurl);
-        $data['num_iid'] = $param['id'];
-		$api_config = M('items_site')->where(array('code' => 'taobao'))->getField('config');
-        $config = unserialize($api_config);
-		$c = new TopClient;		
-        $c->appkey = $config['app_key'];
-        $c->secretKey = $config['app_secret'];
-		$req = new TbkItemInfoGetRequest;
-		$req->setFields("small_images");
-		$req->setPlatform("1");
-		$req->setNumIids($param['id']);
-		$resp = $c->execute($req);
-        $otheritem = objtoarr($resp);
-		$citem = $otheritem['results']['n_tbk_item'][0]['small_images'];
-		foreach($citem[string] as $val){
-		$img .= '<img class="lazy" src=" '. $val . '" alt="商品详情图片">';		
+		//解析get参数
+		$param = convertUrlQuery($u['query']);
+		$test['param']=$param;
+		//var_dump($param);exit;
+		if(!stripos('taobao.com',$u['host'])){
+			$shopUrl = "http://hws.m.taobao.com/cache/wdetail/5.0/?id=".$param['id'];
+		}else{
+			$shopUrl = "http://detail.m.tmall.com/item.htm?id=".$param['id'];
+		}		
+	
+		$ch = curl_init(); 
+		curl_setopt($ch, CURLOPT_URL, $shopUrl);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION,true);
+		curl_setopt($ch, CURLOPT_MAXREDIRS,2);
+		$file_contents = curl_exec($ch);		
+		curl_close($ch);
+		if(!$file_contents){
+			$file_contents = file_get_contents($shopUrl);
 		}
-		$data['desc'] = $img;
+		if(!stripos('taobao.com',$u['host'] === false)){
+			$data = getTaobaoShopInfo($file_contents);
+		}else{
+			$data = getTmallShopInfo($file_contents);
+		}
+		$data['num_iid'] = $param['id'];
 		return $data;
 	}
-	function getitemInfo($url){
-		$sourl = "http://pub.alimama.com/items/search.json?q=" . $url . "&_t=1453007295246&auctionTag=&perPageSize=50&shopTag=&pvid=10_10.181.136.131_407_1453007270445&_tb_token_=test";
-		$ftxia_https = new ftxia_https();
-		$ftxia_https->fetch($sourl);
-		$content = $ftxia_https->results;
-		if(!$content){
-		$content = file_get_contents($sourl);
-		}
-		$dapi = json_decode($content,true);        
+	function getTaobaoShopInfo($content){
+		$data = json_decode($content,true);		
 		$info = array();
-		$info['title'] = $dapi['data']['pageList'][0]['title'];
-		$tag_list = D('items')->get_tags_by_title($info['title']);
-		$tags = implode(',', $tag_list);	
-		$info['tags'] = $tags;
-		$info['ems'] = $ems;
-		$info['num_iid'] = $dapi['data']['pageList'][0]['auctionId'];
-		$info['pic_url'] = $dapi['data']['pageList'][0]['pictUrl'];
-		$info['price'] = $dapi['data']['pageList'][0]['reservePrice'];
-		$info['coupon_price'] = $dapi['data']['pageList'][0]['zkPrice'];				
-		$info['nick'] = $dapi['data']['pageList'][0]['nick'];
-		$info['sellerId'] = $dapi['data']['pageList'][0]['sellerId'];
-		$info['commission'] = $dapi['data']['pageList'][0]['tkCommFee'];
-		$info['commission_rate'] = $dapi['data']['pageList'][0]['tkRate']*100;
-		$info['volume'] = $dapi['data']['pageList'][0]['biz30day'];
-		$type = $dapi['data']['pageList'][0]['userType'];
-		if($type==1){$info['type'] = "B";}else{$info['type'] = "C"; }
-        return $info;	
+		$tmp = json_decode($data['data']['apiStack'][0]['value'],true);
+		$info['title'] = $data['data']['itemInfoModel']['title'];
+		$info['volume'] = $tmp['data']['itemInfoModel']['totalSoldQuantity'];
+		$info['coupon_price'] = $tmp['data']['itemInfoModel']['priceUnits'][0]['price'];
+		if(substr_count($info['coupon_price'],'-')){
+			$tmp1 = explode('-',$info['coupon_price']);
+			$info['coupon_price'] = min($tmp1[0],$tmp1[1]);
+		}
+		$info['price'] = $tmp['data']['itemInfoModel']['priceUnits'][1]['price'];
+		if(substr_count($info['price'],'-')){
+			$tmp = explode("-",$info['price']);
+			$info['price'] = min($tmp[0],$tmp[1]);
+		}		
+		$info['pic_url'] = $data['data']['itemInfoModel']['picsPath'][0];
+		$info['pic_url'] = str_replace("_320x320.jpg","",$info['pic_url']);
+		$info['nick'] = $data['data']['seller']['nick'];		
+		$info['sellerId'] = $data['data']['seller']['userNumId'];
+		return $info;
+	}
+	function getTmallShopInfo($content){
+	//	echo '<h1>Tmall</h1>';
+		//标题正则
+
+		$info = array();
+		preg_match_all('/<title >(.*?) - 手机淘宝网 <\/title>/i',$content,$arr);
+		$info['title'] = $arr[1][0];
+		preg_match_all('/<b class="p-price-v">(.*?)<\/b>/i',$content,$arr);
+		$info['coupon_price'] = $arr[1][0];
+		if(substr_count($info['coupon_price'],'-')){
+			$tmp1 = explode('-',$info['coupon_price']);
+			$info['coupon_price'] = min($tmp1[0],$tmp1[1]);
+		}
+		preg_match_all('/<span class="o-price-v">(.*?)<\/span>/i',$content,$arr);
+		$info['price'] = $arr[1][0];
+		if(substr_count($info['price'],'-')){
+			$tmp = explode("-",$info['price']);
+			$info['price'] = min($tmp[0],$tmp[1]);
+		}
+		preg_match_all('<div class="value"><b>(.*?)<\/b>/si',$content,$arr);
+		$info['volume'] = trim($arr[1][0]);
+		preg_match_all('/<img alt=".*?" src="(.*?)" \/>/',$content,$arr);
+		$info['pic_url'] = str_replace('170','320',$arr[1][0]);
+		$info['pic_url'] = str_replace("_320x320.jpg","",$info['pic_url']);
+		preg_match('/nick=(.+?)&/',$content,$nicks);
+		$info['nick'] = urldecode($nicks[1]);
+		return $info;
 	}
 	function convertUrlQuery($query)
 	{

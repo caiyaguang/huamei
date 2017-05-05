@@ -100,6 +100,33 @@
 							</select>
 						</td>
 					</tr>
+                    <tr><th>活动周期：</th><td><select name="zhouqi" id="zhouqi" onchange="changetime(this)"><option value="0">--请选择--</option><option lang="5" value="1">五天场活动300元</option><option lang="2" value="2">两天场活动150元</option><option lang="10" value="3">十天场活动500元</option><option lang="7" value="4">七天场活动保证金1000元</option></select><script type="text/javascript">                            function changetime(obj){
+                                var v = $(obj).val() ;
+                                //天数
+                                var day = $(obj).find('option[value='+v+']').attr('lang');
+                                //
+                                if(!isNaN(day)){
+                                }else{
+                                    day = 0;
+                                }
+                                
+                                var start_time = $("#coupon_start_time").val();
+                                start_time = start_time.replace('-',' ');
+                                start_time = start_time.replace('-',' ');
+                                var date = new Date(start_time);
+                                //设置增加的天数
+                                date.setDate(date.getDate()+parseInt(day));
+                                //转换成为时间       
+                                //年
+                                var time_str = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+                                
+                            //document.write("从 1970/01/01 至今已过去 " + d.getTime() + " 毫秒"+d.getDate());
+                            //       alert(date.getDate()+'  '+date.getMonth());
+                               $("#coupon_end_time").val(time_str);
+                                
+                            }
+
+                            </script></td></tr>
 					<tr>
 						<th>库存数量：</th>
 						<td>
