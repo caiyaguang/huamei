@@ -5,6 +5,10 @@
 <title>{:C('ftx_site_name')} - {$page_seo.title}</title>
 <meta name="keywords" content="{$page_seo.keywords}" />
 <meta name="description" content="{$page_seo.description}" />
+<meta name="generator" content="yangtata" />
+<meta name="renderer" content="webkit">
+<meta name="author" content="Yangtata Team  bbs.yangtata.com" />
+<meta name="copyright" content="2010-2014 Yangtata Inc." />
 <meta name="MSSmartTagsPreventParsing" content="True" />
 <meta http-equiv="MSThemeCompatible" content="Yes" />
 <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
@@ -40,9 +44,7 @@
 <body>
 <include file="public:header2" />
 <!--main start -->
-</div></div><table width="980" height="50" border="0" align="center" cellpadding="0" cellspacing="0"><tr><td align="left"><b><span style="font-size: 20px; "><font color="#EE1D5F">活动报名费用</font></span></b></td></tr></table><table border="0" width="980" cellspacing="0" align="center"  cellpadding="0" height="70" bgcolor="#FFFFFF"><tr><td width="159" align="center" height="35" style="border-left: 1px solid #999; border-top: 1px solid #999; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"><font color="#333333"><span style="font-size: 13pt; font-weight: 700">活动周期</span></font></td><td width="273" align="center" height="35" style="border-left: 1px solid #999; border-top: 1px solid #999; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"><font color="#333333"><span style="font-size: 13pt">2天首页展示推广</span></font></td><td width="273" align="center" height="35" style="border-left: 1px solid #999; border-top: 1px solid #999; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"><font color="#333333"><span style="font-size: 13pt">5天首页展示推广</span></font></td><td align="center" width="273" height="35" style="border-left: 1px solid #999; border-right: 1px solid #999; border-top: 1px solid #999; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"><font color="#333333"><span style="font-size: 13pt">10天首页展示推广</span></font></td></tr><tr><td width="159" align="center" height="35" style="border-left: 1px solid #999; border-top: 1px solid #999; border-bottom: 1px solid #999; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"><font color="#333333"><span style="font-size: 13pt; font-weight: 700">活动费用</span></font></td><td width="273" align="center" height="35" style="border-left: 1px solid #999; border-top: 1px solid #999; border-bottom: 1px solid #999; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"><font color="#333333"><span style="font-size: 13pt">150元/个</span></font></td><td width="273" align="center" height="35" style="border-left: 1px solid #999; border-top: 1px solid #999; border-bottom: 1px solid #999; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"><font color="#333333"><span style="font-size: 13pt">300元/个</span></font></td><td align="center" width="273" height="35" style="border: 1px solid #999; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px"><font color="#333333"><span style="font-size: 13pt">500元/个</span></font></td></tr></table><div class="area" id="contentB" style="width:980px; "><div class="deallist" style="width:980px; ">
-<div class="w980 mb20 main-newgood">
-
+<div class="main {:C('ftx_site_width')} mb20 main-newgood">
 		<div class="form-result">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
@@ -54,6 +56,7 @@
 					<th width="10%">30天销售</th>
 					<th width="10%">审核状态</th>
 					<th width="15%">审核信息</th>
+					<th width="10%">订单状态</th>
 					<th width="10%" class="last">操作</th>
 				</tr>
 
@@ -75,14 +78,10 @@
 						</div>
 					</td>
 					<td><div class="green">
-					<if condition="$val.pass eq 1"><span>恭喜！您的商品已通过审核</span><span><a href="{:U('item/index',array('id'=>$val['id']))}"  target="_blank">查看</a><elseif condition="$val.pass eq 0" /><if condition="$val.status eq 'fail'"><span>{$val.fail_reason}</span><else/><span>缴费后二审排期</span></if>
-                    <br><form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK"><input name="optEmail" type="hidden" value="531618401@qq.com" /><input name="payAmount" type="hidden" value="" /><input id="title" name="title" type="hidden" value="活动报名" /><input name="memo" type="hidden" value="备注网站用户名,和报名周期" /><input name="pay" type="image" value="转账" src="/static/image/btn-index.png" /></form></td>  
-                    <elseif condition="$val.pass eq 2" /><span>{$val.fail_reason}</span>
-                    
-                    <br><form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK"><input name="optEmail" type="hidden" value="531618401@qq.com" /><input name="payAmount" type="hidden" value="" /><input id="title" name="title" type="hidden" value="活动报名" /><input name="memo" type="hidden" value="备注网站用户名,和报名周期" /><input name="pay" type="image" value="转账" src="/static/image/btn-index.png" /></form></td>
-                    </if>
+					<if condition="$val.pass eq 1"><span>恭喜！您的商品已通过审核</span><span><a href="{:U('item/index',array('id'=>$val['id']))}"  target="_blank">查看</a><elseif condition="$val.pass eq 0" /><if condition="$val.status eq 'fail'"><span>{$val.fail_reason}</span><else/><span>您的商品正在审核中</span></if><elseif condition="$val.pass eq 2" /><span>{$val.fail_reason}</span></if>
 					</div>
 					</td>
+					<td>{purl}</td>
 					<td class="last">
 						<a href="{:U('baoming/edit',array('id'=>$val['id']))}" class="btn-blue">修改</a>
 					</td>
@@ -92,7 +91,7 @@
 			</table>
 					<else/>
 			</table>
-					<div class="tc f14 pt50">没有找到您要查询的信息哦，您可以先去<a href="{:U('bao/index')}" style="color:#0289CD;">报名>></a></div>
+					<div class="tc f14 pt50">没有找到您要查询的信息哦，您可以先去<a href="{:U('bao/index')}" style="color:#0289CD;">报名&gt;&gt;</a></div>
 					</notempty>
 
 							<div class="page_div {:C('ftx_site_width')}">
