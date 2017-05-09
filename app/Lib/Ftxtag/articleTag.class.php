@@ -6,29 +6,21 @@
  */
 class articleTag {
 
-		public function lists($options) {
+	public function dapei($options) {
         $options['field'] = isset($options['field']) ? trim($options['field']) : '*';
         $options['cateid'] = isset($options['cateid']) ? intval($options['cateid']) : 0;
-        $options['num'] = isset($options['num']) ? intval($options['num']) : 5;
-        $options['order'] = isset($options['order']) ? trim($options['order']) : 'hits DESC';
-        $article_mod = M('article');
+        $options['num'] = isset($options['num']) ? intval($options['num']) : 6;
+        $options['order'] = isset($options['order']) ? trim($options['order']) : 'id DESC';
+        $dapei_mod = M('dapei');
         $map = array('status'=>'1');
-        $select = $article_mod->field($options['field']); //字段
+        $select = $dapei_mod->field($options['field']); //字段
         $options['cateid'] && $map['cate_id'] = $options['cateid'];
         $select->where($map); //条件
         $options['num'] && $select->limit($options['num']); //个数
         $select->order($options['order']); //排序
         $data = $select->select();
-        foreach ($data as $key => $val) {
-            if(!empty($val['seo_desc'])){
-                $data[$key]['info'] = $val['seo_desc'];
-            }
-            
-        }
-        
         return $data;
     }
-	
     
 	public function articletui($options) {
         $options['field'] = isset($options['field']) ? trim($options['field']) : '*';
@@ -83,6 +75,16 @@ class articleTag {
         $options['num'] && $select->limit($options['num']); //个数
         $select->order($options['order']); //排序
         $data = $select->select();
+        return $data;
+    }
+
+    /**
+     * 报名套餐获取
+     * @param array $options 
+     */
+    public function baotype() {
+        $options['status']  = 1;
+        $data = M('payitems')->where($options)->order('days desc')->select();
         return $data;
     }
 

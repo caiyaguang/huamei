@@ -70,21 +70,6 @@
                 <input type="text" name="setting[robots_key]" class="input-text" size="50" value="{:C('ftx_robots_key')}" /><br>
 	            <span class="gray ml10">采集器密匙只要是华美网络论坛vip免费联系QQ<a href="tencent://message/?uin=422677261&amp;Site=http://bbs.138gzs.com&amp;Menu=yes" target="_blank">422677261</a>索要</span></td>
         </tr>
-                	<th>是否开启全自动优惠券采集 :</th>
-        	<td>
-            	<label><input type="radio" class="J_change_quancaiji" <if condition="C('ftx_site_quancaiji') eq '1'">checked="checked"</if> value="1" name="setting[site_quancaiji]"> {:L('open')}</label> &nbsp;&nbsp;
-                <label><input type="radio" class="J_change_quancaiji" <if condition="C('ftx_site_quancaiji') eq '0'">checked="checked"</if> value="0" name="setting[site_quancaiji]"> {:L('close')}</label>
-				<span class="gray ml10">更换状态后需清理缓存 <a href="http://bbs.138gzs.com/thread-8524-1-1.html" target="_blank">需要先设置高佣金PID在开启点击查看教程</a></span>
-            </td>
-    	</tr>
-        	 <tr>
-            <th width="150">优惠券高佣金PID:</th>
-            <td>
-                <input type="text" name="setting[yhq_pid]" class="input-text" size="80" value="{:C('ftx_yhq_pid')}">     
-				<span class="gray ml10"><br>
-				</a></span>
-            高佣金频道/鹊桥PID教程<a href="http://bbs.138gzs.com/thread-8524-1-1.html" target="_blank">http://bbs.138gzs.com/thread-8524-1-1.html</a></td>
-        </tr>
             <th>QQ登陆回调地址 :</th>
             <td><input type="text" name="setting[site_uri]" class="input-text" size="100" value="{:C('ftx_site_uri')}">
 			<span class="red ml10">必须与申请QQ登陆时填写的回调地址保持一致 教程<a href="http://bbs.138gzs.com/thread-3665-1-1.html" target="_blank">http://bbs.138gzs.com/thread-3665-1-1.html</a></span></td>
@@ -105,6 +90,13 @@
 				<span class="gray ml10">更换状态后需清理缓存</span>
             </td>
     	</tr>
+                		 <tr>
+            <th width="150">是否开启付费报名 :</th>
+            <td>
+                <label><input type="radio" <if condition="C('ftx_site_pay') eq '1'">checked="checked"</if> value="1" name="setting[site_pay]"> {:L('open')}</label> &nbsp;&nbsp;
+                <label><input type="radio" <if condition="C('ftx_site_pay') eq '0'">checked="checked"</if> value="0" name="setting[site_pay]"> {:L('close')}</label>                
+            </td>
+        </tr>
 
 		<tr>
             <th width="150">淘点金代码 :</th>

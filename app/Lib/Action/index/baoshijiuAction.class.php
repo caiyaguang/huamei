@@ -1,8 +1,4 @@
 <?php
-    vendor('Taobaotop.TopClient');
-    vendor('Taobaotop.RequestCheckUtil');
-    vendor('Taobaotop.ResultSet');
-    vendor('Taobaotop.request.TbkItemInfoGetRequest');
 class baoshijiuAction extends FrontAction {
     public function _initialize() {
         parent::_initialize();
@@ -11,59 +7,43 @@ class baoshijiuAction extends FrontAction {
             $this->redirect('user/login');
         }
 		$this->_mod = D('items');
+		$this->_paymod = D('paydays');
 		$this->cid = $_SERVER['HTTP_HOST'];
-        $this->_cate_mod = D('items_cate');
-		$this->assign('nav_curr', 'index');		
+        $this->_cate_mod = D('items_cate');		
     }
 
-	public function index(){
-
-		$this->_config_seo(array(
-            'title' => '卖家报名中心 — ' ,
-        ));
-		$this->assign('nav_currr', 'index');
-		$this->display();
-	}
-
+	
 	public function add(){
 		$info = $this->visitor->get();
         $this->assign('info', $info);
 
+        if (C('ftx_site_haopinzhebao') == 1) {
+        	$baotype = explode('|', C('ftx_site_hpzbaptype') ) ; 
+        	$yanzbaotype  =  in_array('baoshijiu',$baotype ); //成功返回1 没有返回null
+        	if ($yanzbaotype == 1) {
+        		if ($info['signup'] <= 0) {
+        			$this->error('您的报名机会已经用完啦！',U('baoming/my'));
+        		}
+        	}
+        }
+
+        $paydays_list = M('paydays')->where(array('pass'=>1))->select();
+		$this->assign('paydays_list',$paydays_list);
 		$orig_list = M('items_orig')->where(array('pass'=>1))->select();
 		$this->assign('orig_list',$orig_list);
 		$this->_config_seo(array(
-            'title' => '20元封顶活动报名中心' ,
+            'title' => '20元封顶活动报名 — ' ,
         ));
-		$this->assign('nav_currr', 'index');
+		$this->assign('nav_currr', 'baoshijiu');
 		$this->display();
 	}
 
-	public function edit(){
-		if(IS_POST){
-		}else{
-
-			$id = I('id','', 'trim');
-			!$id && $this->_404();
-			$item = $this->_mod->where(array('id' => $id))->find();
-			!$item && $this->_404();
-
-			$orig_list = M('items_orig')->where(array('pass'=>1))->select();
-			$this->assign('orig_list',$orig_list);
-			$this->assign('item',$item);
-			$this->_config_seo(array(
-				'title' => '宝贝修改 — ' ,
-			));
-			$this->display();
-		}
-
-	}
+	
 	public function ajaxGetItem()
 {
-
 	if(!isset($_REQUEST['url']))
 	$this->ajaxReturn (0,'未传入商品链接');
-	$info = getInfo($_REQUEST['url']);
-	$info['shop_type']='B';
+	$info = getInfo($_REQUEST['url']);	
 	$info['orig_id']='';
 	$info['coupon_rate'] = intval(($info['price'] / $info['coupon_price'])) * 1000;
     $this->ajaxReturn(1,'',$info);
@@ -79,33 +59,45 @@ class baoshijiuAction extends FrontAction {
 				$this->ajaxReturn(1005, '商品IID不能为空，请输入宝贝地址获取');
 			}
 			$cate_id			= I('cate_id','', 'trim');
-			$sex			= I('sex','', 'trim');
-			$title				= I('title','', 'trim');			
+			$title				= I('title','', 'trim');	
+			$sex				= I('sex','', 'trim');
 			!$title && $this->ajaxReturn(1005, '商品名称不能为空');
-			$realname				= I('realname','', 'trim');
+			$realname			= I('realname','', 'trim');
 			$mobile				= I('mobile','', 'trim');
-			$qq				= I('qq','', 'trim');
+			$qq				    = I('qq','', 'trim');
+			$cu				    = I('cu','', 'trim');
 			$nick				= I('nick','', 'trim');
 			!$nick && $this->ajaxReturn(1005, '掌柜名称不能为空');
-			$sellerId             = I('sellerId',0,'trim');
-			$desc               = I('desc',0,'trim');
+			$sellerId           = I('sellerId',0,'trim');
+			$desc				= I('desc','', 'trim');
 			$price				= I('price','', 'trim');
 			$ems				= I('ems','', 'trim');
 			$volume				= I('volume','', 'trim');
 			$coupon_rate		= I('coupon_rate','', 'trim');			
 			$coupon_price		= I('coupon_price','', 'trim');
-			$inventory			= I('good_inventory','', 'trim');
-			$coupon_start_time	= I('coupon_start_time','', 'trim');
-			$coupon_end_time	= I('coupon_end_time','', 'trim');
+			$inventory			= I('inventory','', 'trim');			
 			$pic_url			= I('pic_url','', 'trim');
 			$shop_type			= I('shop_type','', 'trim');
 			$intro				= I('intro','', 'trim');
-            $likes            = rand(99,9999);
+			$bao_type		    = I('bao_type','', 'trim');
+            $likes              = rand(99,9999);
+			$payor = C('ftx_site_pay');
+			if($payor==1){
+			$paydays		    = I('paydays','', 'trim');
+			$data['payid']		= $paydays;
+			}else{
+			$coupon_start_time	= I('coupon_start_time','', 'trim');
+			$coupon_end_time	= I('coupon_end_time','', 'trim');
+			$data['coupon_start_time']	= strtotime($coupon_start_time);
+			$data['coupon_end_time']	= strtotime($coupon_end_time);
+			}
 			$items = $items_mod->where(array('num_iid' => $num_iid))->find();
 			$items && $this->ajaxReturn(1005, L('item_exist'));
 
 			$data['num_iid']			= $num_iid;
 			$data['sex']			    = $sex;
+			$data['baotype']			= $bao_type;
+			$data['cu']			        = $cu;
 			$data['cate_id']			= $cate_id;
 			$data['title']				= $title;
 			$data['realname']		    = $realname;
@@ -113,11 +105,9 @@ class baoshijiuAction extends FrontAction {
 			$data['qq']				    = $qq;
 			$data['nick']				= $nick;
 			$data['price']				= $price;
-			$data['coupon_price']		= $coupon_price;
-			$data['coupon_start_time']	= strtotime($coupon_start_time);
-			$data['coupon_end_time']	= strtotime($coupon_end_time);
+			$data['coupon_price']		= $coupon_price;			
 			$data['inventory']			= $inventory;
-			$data['ems']				= $ems;
+			$data['ems']				= $ems;;
 			$data['likes']              = $likes;
 			$data['coupon_rate']        = $coupon_rate;
 			$data['sellerId']           = $sellerId;
@@ -127,266 +117,138 @@ class baoshijiuAction extends FrontAction {
 			$data['intro']				= $intro;
 			$data['shop_type']			= $shop_type;
 			$data['add_time']			= time();
-			$data['pass']				= 0;
+			$data['pass']				= 0;			
 			$data['uid']				= $this->visitor->info['id'];
-			$data['uname']				= $this->visitor->info['username'];
-            $data['coupon_start_time']			= strtotime($coupon_start_time);
-		    $data['coupon_end_time']			= strtotime($coupon_end_time);
+			$data['uname']				= $this->visitor->info['username'];  
+			if($payor==1){
+			$pays = $this->_paymod->where(array('id' => $paydays))->find();			
+			$items_mod->create($data);
+			// 付款
+			$urlcs = array(
+				'fkid'=>base64_encode($data['num_iid']),
+				'typeid'=>base64_encode($data['baotype']),
+				'price' => base64_encode($data['price']),
+				'sellerId' => base64_encode($data['sellerId']),
+				'likes'  => base64_encode($data['likes'])
+			);
+			$href = U('baoming/payitems',$urlcs);
+
+			$payemail = C('ftx_alipay');
+			$payurl = '<div class="pay"><p class="tips_success">恭喜您，报名成功！</p><a class="gopay" target="_blank" href="'.$href.'"><span>去付款</span></a></div>';
+
+			
+			$paydata['purl'] = $payurl;
+			if($items_mod->add()){	
+				$memberinfo = $this->visitor->get();
+				$uid = $memberinfo['id'];
+				$signup = $memberinfo['signup'];
+				if (!empty($signup)  && $signup >0  ) {
+					$data['signup'] = $signup - 1;
+					$result = M('user')->where(array('id'=>$uid))->save($data );
+				}
+
+			    $resp = $this->fetch('dialog:goods_shijiu_success');
+				$this->ajaxReturn(1, $paydata, $resp);
+			}else{
+				$this->ajaxReturn(0, '数据错误，请检查！');
+			}
+			}else{
 			$items_mod->create($data);
 			if($items_mod->add()){
-				$resp = $this->fetch('dialog:goods_add_success');
+				$memberinfo = $this->visitor->get();
+				$uid = $memberinfo['id'];
+				$signup = $memberinfo['signup'];
+				if (!empty($signup)  && $signup >0  ) {
+					$data['signup'] = $signup - 1;
+					$result = M('user')->where(array('id'=>$uid))->save($data );
+				}
+				
+				$resp = $this->fetch('dialog:goods_baoshijiu_success');
 				$this->ajaxReturn(1, '', $resp);
 			}else{
 				$this->ajaxReturn(0, '数据错误，请检查！');
 			}
-		}
-	}
-
- 
-
-	public function my() {
-		$item_mod = M('items');
-		$cate_mod = M('items_cate');
-		$page_size = 20;
-        $p = I('p',1, 'intval'); //页码
-        $start = $page_size * ($p - 1) ;
-
-        $res = $cate_mod->field('id,name')->select();
-        $cate_list = array();
-        foreach ($res as $val) {
-            $cate_list[$val['id']] = $val['name'];
-        }
-        $this->assign('cate_list', $cate_list);
-		$type = I('type', 'all', 'trim'); //排序
-		$order = 'ordid asc ';
-		$map['uid'] = $this->visitor->info['id'];
-		switch ($type) {
-            case 'all':
-                break;
-            case 'pass':
-                $map['pass'] = 1;   
-                break;
-			case 'wait':
-				$map['pass'] = 0;
-				$map['status'] = 'underway';
-                break;
-			case 'fail':
-                $map['pass'] = 0; 
-				$map['status'] = 'fail';
-                break;
-        }
-		$goods_list = $item_mod->where($map)->order('add_time desc')->limit($start . ',' . $page_size)->select();
-		$this->assign('goods_list', $goods_list);
-		$count = $item_mod->where($map)->count('id');
-		$pager = $this->_pager($count, $page_size);
-        $this->assign('page_bar', $pager->kshow());
-        $this->assign('page_btn', $pager->zshow());
-		$this->assign('type', $type);
-		$this->_config_seo(array(
-            'title' => L('my_goods') . '	-	' . C('ftx_site_name'),
-        ));
-		$this->assign('nav_currr', 'my');
-		$this->display();
-	}
-
-	public function yaoqiu(){
-		$this->_config_seo(array(
-            'title' => '活动要求 — ' ,
-        ));
-		$this->assign('nav_currr', 'yaoqiu');
-		$this->display();
-	}
-
-	public function shenhe(){
-		$this->_config_seo(array(
-            'title' => '审核说明 — ' ,
-        ));
-		$this->assign('nav_currr', 'shenhe');
-		$this->display();
-	}
-
-
-	public function view(){
-		$id = I('id','','trim');
-        !$id && $this->_404();
-		$item = $this->_mod->where(array('id' => $id))->find();
-		!$item && $this->_404();
-		if($item['uname'] != $this->visitor->info['username']){
-			 $this->redirect('goods/mygoods');
-		}
-
-		$this->assign('item', $item);
-		$this->_config_seo(array(
-            'title' => '报名管理	-	' . C('ftx_site_name'),
-        ));
-		$this->display();
-	}
-
- 
-	/**
-     * AJAX提交
-     */
-	public function ajaxedit(){
-		if(IS_POST){
-			$items_mod			= M('items');
-			$num_iid			= I('iid','', 'trim');
-			if($num_iid == ''){
-				$this->ajaxReturn(1005, '商品IID不能为空，请输入宝贝地址获取');
-			}
-			$id					= I('id','', 'trim');
-			if($id == ''){
-				$this->ajaxReturn(1005, 'ID不能为空，请返回正常渠道提交！');
-			}
-			$cate_id			= I('cate_id','', 'trim');
-			$likes            = rand(99,9999);
-			$sellerId             = I('sellerId',0,'trim');
-			$title				= I('title','', 'trim');
-			!$title && $this->ajaxReturn(1005, '商品名称不能为空');
-			$realname				= I('realname','', 'trim');
-			$mobile				= I('mobile','', 'trim');
-			$qq				       = I('qq','', 'trim');
-			$nick				= I('nick','', 'trim');
-			!$nick && $this->ajaxReturn(1005, '掌柜名称不能为空');
-			$price				= I('price','', 'trim');
-			$coupon_price		= I('good_price','', 'trim');
-			$inventory			= I('good_inventory','', 'trim');
-			$ems				= I('ems','', 'trim');
-			$sex				= I('sex','', 'trim');
-			$volume				= I('volume','', 'trim');
-			$coupon_rate		= I('coupon_rate','', 'trim');			
-			$pic_url			= I('pic_url','', 'trim');
-			$shop_type			= I('shop_type','', 'trim');
-			$coupon_start_time	= I('coupon_start_time','', 'trim');
-			$coupon_end_time	= I('coupon_end_time','', 'trim');
-			$intro				= I('intro','', 'trim');
-			$map['num_iid']		= $num_iid;
-			$map['id']			= $id;
-			$map['uname']		= $this->visitor->info['username'];
-
-			$items = $items_mod->where($map)->find();
-			!$items && $this->ajaxReturn(1005, L('item_not_exist'));
-
-
-			$data['cate_id']		= $cate_id;
-			$data['title']			= $title;
-			$data['price']			= $price;
-			$data['realname']		= $realname;
-			$data['mobile']			= $mobile;
-			$data['qq']				= $qq;
-			$data['ems']            = $ems;
-			$data['sex']            = $sex;
-			$data['sellerId']       = $sellerId;
-			$data['coupon_rate']    = $coupon_rate;
-			$data['coupon_price']	= $coupon_price;
-			$data['inventory']		= $inventory;
-			$data['pic_url']		= $pic_url;			
-			$data['likes']          = $likes;
-			$data['volume']			= $volume;
-			$data['intro']			= $intro;
-			$data['coupon_start_time']			= strtotime($coupon_start_time);
-			$data['coupon_end_time']			= strtotime($coupon_end_time);
-			$data['shop_type']		= $shop_type;
-			$data['add_time']		= time();
-			$data['pass']			= 0;
-			$data['status']			= 'underway';
-			 if (false == $this->_mod->create($data)) {
-                $this->error($this->_mod->getError());
-            }
-			if($this->_mod->where(array('id'=>$id))->save($data)){
-				$this->ajaxReturn(1, '修改成功！');
-			}else{
-				$this->ajaxReturn(0, '数据错误，请检查！');
 			}
 		}
 	}
 
-	public function get_id( $url )
-{
-$id = 0;
-$parse = parse_url( $url );
-if ( isset( $parse['query'] ) )
-{
-parse_str( $parse['query'],$params );
-if ( isset( $params['id'] ) )
-{
-$id = $params['id'];
-return $id;
-}
-if ( isset( $params['item_id'] ) )
-{
-$id = $params['item_id'];
-return $id;
-}
-if ( isset( $params['default_item_id'] ) )
-{
-$id = $params['default_item_id'];
-}
-}
-return $id;
-}
-
-	private function _get_ftx_top() {
-        vendor('Ftxia.TopClient');
-        vendor('Ftxia.RequestCheckUtil');
-        vendor('Ftxia.Logger');
-        $tb_top = new TopClient;
-        $tb_top->appkey = $this->_ftxconfig['app_key'];
-        $tb_top->secretKey = $this->_ftxconfig['app_secret'];
-        return $tb_top;
-    }
+	
 }
 function getInfo($url){
 		$u = parse_url($url);
-        $param = convertUrlQuery($u['query']);        
-        $itemurl = "http://item.taobao.com/item.htm?id=".$param['id'];
-		$itemurl = urlencode($itemurl);
-        $data = getitemInfo($itemurl);
-        $data['num_iid'] = $param['id'];
-		$api_config = M('items_site')->where(array('code' => 'taobao'))->getField('config');
-        $config = unserialize($api_config);
-		$c = new TopClient;		
-        $c->appkey = $config['app_key'];
-        $c->secretKey = $config['app_secret'];
-		$req = new TbkItemInfoGetRequest;
-		$req->setFields("small_images");
-		$req->setPlatform("1");
-		$req->setNumIids($param['id']);
-		$resp = $c->execute($req);
-        $otheritem = objtoarr($resp);
-		$citem = $otheritem['results']['n_tbk_item'][0]['small_images'];
-		foreach($citem[string] as $val){
-		$img .= '<img class="lazy" src=" '. $val . '" alt="商品详情图片">';		
+		//解析get参数
+		$param = convertUrlQuery($u['query']);
+		$test['param']=$param;		
+		$shopUrl = "http://hws.m.taobao.com/cache/wdetail/5.0/?id=".$param['id'];
+		$ch = curl_init(); 
+		curl_setopt($ch, CURLOPT_URL, $shopUrl);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION,true);
+		curl_setopt($ch, CURLOPT_MAXREDIRS,2);
+		$file_contents = curl_exec($ch);		
+		curl_close($ch);
+		if(!$file_contents){
+			$file_contents = file_get_contents($shopUrl);
 		}
-		$data['desc'] = $img;
+        $data = getTaobaoShopInfo($file_contents);		
+		$data['num_iid'] = $param['id'];
 		return $data;
 	}
-	function getitemInfo($url){
-		$sourl = "http://pub.alimama.com/items/search.json?q=" . $url . "&_t=1453007295246&auctionTag=&perPageSize=50&shopTag=&pvid=10_10.181.136.131_407_1453007270445&_tb_token_=test";
-		$ftxia_https = new ftxia_https();
-		$ftxia_https->fetch($sourl);
-		$content = $ftxia_https->results;
-		if(!$content){
-		$content = file_get_contents($sourl);
-		}
-		$dapi = json_decode($content,true);        
+	function getTaobaoShopInfo($content){
+		$data = json_decode($content,true);		
 		$info = array();
-		$info['title'] = $dapi['data']['pageList'][0]['title'];
-		$tag_list = D('items')->get_tags_by_title($info['title']);
-		$tags = implode(',', $tag_list);	
-		$info['tags'] = $tags;
-		$info['num_iid'] = $dapi['data']['pageList'][0]['auctionId'];
-		$info['pic_url'] = $dapi['data']['pageList'][0]['pictUrl'];
-		$info['price'] = $dapi['data']['pageList'][0]['reservePrice'];
-		$info['coupon_price'] = $dapi['data']['pageList'][0]['zkPrice'];				
-		$info['nick'] = $dapi['data']['pageList'][0]['nick'];
-		$info['sellerId'] = $dapi['data']['pageList'][0]['sellerId'];
-		$info['commission'] = $dapi['data']['pageList'][0]['tkCommFee'];
-		$info['commission_rate'] = $dapi['data']['pageList'][0]['tkRate']*100;
-		$info['volume'] = $dapi['data']['pageList'][0]['biz30day'];
-		$type = $dapi['data']['pageList'][0]['userType'];
-		if($type==1){$info['type'] = "B";}else{$info['type'] = "C"; }
-        return $info;	
+		$tmp = json_decode($data['data']['apiStack'][0]['value'],true);
+		$info['title'] = $data['data']['itemInfoModel']['title'];
+		$info['volume'] = $tmp['data']['itemInfoModel']['totalSoldQuantity'];
+		$info['shop_type'] = $data['data']['seller']['type'];
+		$info['emss'] = $tmp['data']['delivery']['deliveryFees'][0];
+		$ems = $info['emss'];
+		if($ems == '卖家包邮'){
+		$info['ems'] = 1;
+		}else 
+		{$info['ems'] = 0;
+		}  
+		$info['inventory'] = $tmp['data']['itemInfoModel']['quantity'];
+		$info['cu'] = $tmp['data']['itemInfoModel']['priceUnits'][0]['name'];
+		if(!$info['cu']){
+		$info['cu'] = $tmp['data']['itemInfoModel']['priceUnits'][0]['tips'][0]['txt'];
+		}
+		$info['coupon_price'] = $tmp['data']['itemInfoModel']['priceUnits'][0]['price'];
+		if(substr_count($info['coupon_price'],'-')){
+			$tmp1 = explode('-',$info['coupon_price']);
+			$info['coupon_price'] = min($tmp1[0],$tmp1[1]);
+		}
+		$info['price'] = $tmp['data']['itemInfoModel']['priceUnits'][1]['price'];
+		if(substr_count($info['price'],'-')){
+			$tmp = explode("-",$info['price']);
+			$info['price'] = min($tmp[0],$tmp[1]);
+		}		
+		$info['pic_url'] = $data['data']['itemInfoModel']['picsPath'][0];
+		$info['pic_url'] = str_replace("_320x320.jpg","",$info['pic_url']);
+		$info['nick'] = $data['data']['seller']['nick'];
+		$info['sellerId'] = $data['data']['seller']['userNumId'];
+		$descinfo = $data['data']['descInfo']['briefDescUrl'];
+		$ftxia_https = new ftxia_https();
+		$ftxia_https->fetch($descinfo);
+		$source = $ftxia_https->results;
+		if(!$source){
+			$source = file_get_contents($descinfo);
+			}						
+		$comlist = json_decode($source,true);
+		$tm   = $comlist['data']['images'];
+		$onepic = '<img class="lazy" src='.$tm[0].'>';
+		$zcitem['desc'] = implode('',$tm);
+		foreach($tm as $sms){
+			   if(strpos($zcitem['desc'],$sms) ){					 
+				     $imgurl = '<img class="lazy" src='.$sms.'>';					 
+					 $zcitem['desc'] =str_replace($sms, $imgurl, $zcitem['desc']);  
+					 $zcitem['desc'] =str_replace($tm[0], '', $zcitem['desc']);
+			   } 
+			} 
+		$info['desc'] = $onepic.''.$zcitem['desc'];
+		return $info;
 	}
+
 	function convertUrlQuery($query)
 	{
 			$queryParts = explode('&', $query);
