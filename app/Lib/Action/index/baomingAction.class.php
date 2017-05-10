@@ -343,7 +343,7 @@ class baomingAction extends FrontAction {
 		$items['item_list'][$key]['ptitle'] = $pays['title'];
 		// p(ssellerBao($vol['num_iid']));
 		$payurl = ssellerBao($vol['num_iid']);
-		$items['item_list'][$key]['purl'] = $payurl;
+		$items['item_list'][$key]['purl'] = '$payurl';
 		}
 		$this->assign('goods_list', $items['item_list']);
 		$count = $item_mod->where($map)->count('id');
