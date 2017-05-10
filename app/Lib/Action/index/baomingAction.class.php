@@ -342,11 +342,11 @@ class baomingAction extends FrontAction {
 			$pays = $this->_paymod->where(array('id' => $payid))->find();
 			$items['item_list'][$key]['ptitle'] = $pays['title'];
 					
-	        $result = D('payaudithpz')->where(array('itemurl'=>$vol['num_iid']))->find();
-	        p($result)
+	        // $result = D('payaudithpz')->where(array('itemurl'=>$vol['num_iid']))->find();
+	        // p($result)
 	        // $itemsInfo = D('items')->where(array('num_iid'=>$vol['num_iid']))->find();
 	        // p($itemsInfo)
-			$items['item_list'][$key]['purl'] = ssellerBao($vol['num_iid']);
+			// $items['item_list'][$key]['purl'] = ssellerBao($vol['num_iid']);
 		}
 		$this->assign('goods_list', $items['item_list']);
 		$count = $item_mod->where($map)->count('id');
