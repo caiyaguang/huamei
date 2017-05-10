@@ -84,7 +84,7 @@
 					<!-- <td>{purl}</td> -->
 					<td class="last">
 						<!-- <a href="{:U('baoming/payitems',array('fkid'=>$val['num_iid'], 'typeid'=>$val['baotype'], 'price'=>$val['price'], 'sellerId'=>$val['sellerId'], 'likes'=>$val['likes'], ))}" class="btn-blue">充值</a> -->
-						json_encode($val)
+						json_encode(val)
 					</td>
 					<td class="last">
 						<a href="{:U('baoming/edit',array('id'=>$val['id']))}" class="btn-blue">修改</a>
