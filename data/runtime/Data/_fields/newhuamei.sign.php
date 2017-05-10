@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'uid', 2 => 'username', 3 => 'last_date', 4 => 'sign_count', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(10)', 'uid' => 'int(10)', 'username' => 'varchar(20)', 'last_date' => 'int(10)', 'sign_count' => 'int(10)', ), );?>
