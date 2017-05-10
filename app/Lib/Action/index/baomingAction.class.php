@@ -334,19 +334,14 @@ class baomingAction extends FrontAction {
 		$goods_list = $item_mod->where($map)->order('add_time desc')->limit($start . ',' . $page_size)->select();
 		$items = array();
 		foreach($goods_list as $key=>$vol){
-			$items['item_list'][$key]			= $vol;
-			$cateid = $vol['cate_id'];
-			$cas = $cate_mod->where(array('id' => $cateid))->find();
-			$items['item_list'][$key]['cname'] = $cas['name'];
-			$payid = $vol['payid'];
-			$pays = $this->_paymod->where(array('id' => $payid))->find();
-			$items['item_list'][$key]['ptitle'] = $pays['title'];
-					
-	        // $result = D('payaudithpz')->where(array('itemurl'=>$vol['num_iid']))->find();
-	        // p($result)
-	        // $itemsInfo = D('items')->where(array('num_iid'=>$vol['num_iid']))->find();
-	        // p($itemsInfo)
-			// $items['item_list'][$key]['purl'] = ssellerBao($vol['num_iid']);
+		$items['item_list'][$key]			= $vol;
+		$cateid = $vol['cate_id'];
+		$cas = $cate_mod->where(array('id' => $cateid))->find();
+		$items['item_list'][$key]['cname'] = $cas['name'];
+		$payid = $vol['payid'];
+		$pays = $this->_paymod->where(array('id' => $payid))->find();
+		$items['item_list'][$key]['ptitle'] = $pays['title'];		
+				
 		}
 		$this->assign('goods_list', $items['item_list']);
 		$count = $item_mod->where($map)->count('id');

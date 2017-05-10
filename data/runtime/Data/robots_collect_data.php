@@ -1,0 +1,1 @@
+<?php	return array ( 'rid' => 11, 'p' => 7, );?>
