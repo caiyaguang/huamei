@@ -340,8 +340,8 @@ class baomingAction extends FrontAction {
 		$items['item_list'][$key]['cname'] = $cas['name'];
 		$payid = $vol['payid'];
 		$pays = $this->_paymod->where(array('id' => $payid))->find();
-		$items['item_list'][$key]['ptitle'] = $pays['title'];		
-				
+		$items['item_list'][$key]['ptitle'] = $pays['title'];
+		$items['item_list'][$key]['purl'] = ssellerBao($vol['num_iid']);
 		}
 		$this->assign('goods_list', $items['item_list']);
 		$count = $item_mod->where($map)->count('id');
