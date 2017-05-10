@@ -1,1 +1,0 @@
-<?php	return array ( 0 => 'uid', 1 => 'action', 2 => 'num', 3 => 'last_time', '_autoinc' => false, '_pk' => 'action', '_type' => array ( 'uid' => 'int(10) unsigned', 'action' => 'varchar(20)', 'num' => 'int(10) unsigned', 'last_time' => 'int(10) unsigned', ), );?>

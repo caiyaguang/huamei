@@ -1,1 +1,0 @@
-<?php	return array ( 0 => 'id', 1 => 'fuid', 2 => 'fname', 3 => 'tuid', 4 => 'tname', 5 => 'info', 6 => 'status', 7 => 'add_time', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(11)', 'fuid' => 'int(11)', 'fname' => 'varchar(51)', 'tuid' => 'int(11)', 'tname' => 'varchar(50)', 'info' => 'text', 'status' => 'tinyint(1)', 'add_time' => 'int(11)', ), );?>
