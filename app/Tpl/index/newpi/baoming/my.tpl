@@ -56,7 +56,7 @@
 					<th width="10%">30天销售</th>
 					<th width="10%">审核状态</th>
 					<th width="15%">审核信息</th>
-					<th width="10%">订单状态</th>
+					<!-- <th width="10%">订单状态</th> -->
 					<th width="10%" class="last">操作</th>
 				</tr>
 
@@ -78,10 +78,10 @@
 						</div>
 					</td>
 					<td><div class="green">
-					<if condition="$val.pass eq 1"><span>恭喜！您的商品已通过审核</span><span><a href="{:U('item/index',array('id'=>$val['id']))}"  target="_blank">查看</a><elseif condition="$val.pass eq 0" /><if condition="$val.status eq 'fail'"><span>{$val.fail_reason}</span><else/><span>您的商品正在审核中</span></if><elseif condition="$val.pass eq 2" /><span>{$val.fail_reason}</span></if>
+					<if condition="$val.pass eq 1"><span>恭喜！您的商品已通过审核</span><span><a href="{:U('item/index',array('id'=>$val['id']))}"  target="_blank">查看</a><elseif condition="$val.pass eq 0" /><if condition="$val.status eq 'fail'"><span>{$val.fail_reason}</span><else/><span>您的商品正在审核中</span><span>{$val.purl}</span>></if><elseif condition="$val.pass eq 2" /><span>{$val.fail_reason}</span></if>
 					</div>
 					</td>
-					<td>{$val.purl}</td>
+					<!-- <td>{$val.purl}</td> -->
 					<td class="last">
 						<a href="{:U('baoming/edit',array('id'=>$val['id']))}" class="btn-blue">修改</a>
 					</td>
