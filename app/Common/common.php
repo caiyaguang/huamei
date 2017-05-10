@@ -640,7 +640,6 @@ function strsub($str='',$len=0){
       function ssellerBao($itemsiid) {
         $result = D('payaudithpz')->where(array('itemurl'=>$itemsiid))->find();
         $itemsInfo = D('items')->where(array('num_iid'=>$itemsiid))->find();
-        p($itemsInfo)
         if ($result) {
             switch ($result['status']) {
                 case 1:
