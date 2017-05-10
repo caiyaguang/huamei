@@ -136,6 +136,9 @@
                                 <img src="{$typeInfo['pic_url']}" width="300">                                   </td>
                             </tr>
                             <tr>
+                                <th>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                                </th>
                                 <th colspan="2" style="text-align:center; font-size:16px; color:#900; font-weight:bold;">
                                     不会手机支付 也可试试下面的 电脑支付
                                 </th>
