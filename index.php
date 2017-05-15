@@ -13,5 +13,5 @@ define('CONF_PATH',		FTX_DATA_PATH . 'config/');
 define('RUNTIME_PATH',	FTX_DATA_PATH . 'runtime/');
 define('HTML_PATH',		FTX_DATA_PATH . 'html/');
 
-define('APP_DEBUG', false);
+define('APP_DEBUG', true);
 require("./thinkphp/setup.php");
