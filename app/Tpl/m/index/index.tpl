@@ -10,12 +10,12 @@
 <include file='public:header'/>
 <include file='public:top'/>
 <div class="app">
-    <div class="search_warp">
+	<div class="search_warp">
     <span id="classify" class="classify"><a href="javascript:;" class="btn btn-left btn-type"></a></span>
-        <div class="search" style="float: none;">
-        <form name="search" action="{:C('search/index')}" method="get" id="search"><input type="hidden" name="m" value="search"><input type="hidden" name="a" value="index"><div class="seek_main"><input type="text" name="k" onclick="if(this.value=='请输入内容'){this.value='';this.className='seek_input seek_input_h'}" onblur="if(this.value==''){this.value='请输入内容';this.className='seek_input seek_input_f'}" class="seek_input seek_input_f" value="请输入内容"><button type="submit" id="k" onclick="document.getElementById('k').value=encodeURI(document.getElementById('k').value);getId('search').submit()" class="seek_btn" value="搜本站"><img src="__STATIC__/jwap/images/search.png"></button></div></form></div>
+    	<div class="search" style="float: none;">
+    	<form name="search" action="{:C('search/index')}" method="get" id="search"><input type="hidden" name="m" value="search"><input type="hidden" name="a" value="index"><div class="seek_main"><input type="text" name="k" onclick="if(this.value=='请输入内容'){this.value='';this.className='seek_input seek_input_h'}" onblur="if(this.value==''){this.value='请输入内容';this.className='seek_input seek_input_f'}" class="seek_input seek_input_f" value="请输入内容"><button type="submit" id="k" onclick="document.getElementById('k').value=encodeURI(document.getElementById('k').value);getId('search').submit()" class="seek_btn" value="搜本站"><img src="__STATIC__/jwap/images/search.png"></button></div></form></div>
         
-      </div>    
+      </div>	
     <header id="head" class="head">
         <div class="fixtop">
         <span id="classify" class="classify"><a href="javascript:;" class="btn btn-left btn-type"></a></span>
@@ -31,7 +31,7 @@
 
     <ftx:nav type="lists" style="other">
 
-    <volist name="data" id="val">
+	<volist name="data" id="val">
 
       <li class="huamei_1" data-url="{$val.link}">
 
@@ -49,7 +49,7 @@
 
     </volist>
 
-    </ftx:nav>  
+	</ftx:nav>  
 
     </ul>
 
@@ -69,64 +69,23 @@
                     <dd class="img"><img src="\static\jwap\images\waptubiao\55ee257497dd5.png" width="45" alt="好货早收藏"></dd>
                     <!-- dl-->
                 </dl><dl class="rec_item huamei_1" data-url="{:U('quan/index')}">
-                    <dt class="tit">精品内部券</dt>
+                    <dt class="tit">内部券</dt>
                     <dd class="txt">全网精品总汇</dd>
                     <dd class="img"><img src="\static\jwap\images\waptubiao\55ee25ad427f5.png" width="45" alt="好货不放过"></dd>
                     <!-- dl-->
-                </dl><dl class="rec_item huamei_1" data-url="{:U('meilishuo/index')}">
-                    <dt class="tit">美丽说精选</dt>
+                </dl><dl class="rec_item huamei_1" data-url="{:U('brand/index')}">
+                    <dt class="tit">品牌精选</dt>
                     <dd class="txt">女人的购物天堂</dd>
                     <dd class="img"><img src="\static\jwap\images\waptubiao\55ee25e227b08.png" width="45" alt="女人的购物天堂"></dd>
                     <!-- dl-->
-                </dl><dl class="rec_item huamei_1" data-url="{:U('tamll/index')}">
-                    <dt class="tit">天猫优选</dt>
+                </dl><dl class="rec_item huamei_1" data-url="{:U('article/index')}">
+                    <dt class="tit">时尚美文</dt>
                     <dd class="txt">正品低价、品质保证</dd>
                     <dd class="img"><img src="\static\jwap\images\waptubiao\55ee26066f7d4.png" width="45" alt="正品低价、品质保证"></dd>
                     <!-- dl-->
                 </dl>        </div>
 
-        <div class="hot_bottom">
-            <dl class="add_item huamei_1" data-url="{:U('brand/index')}">
-                <dt class="img">
-                    <img src="\static\jwap\images\waptubiao\icon_tit6.jpg" width="52" height="52">
-                </dt>
-                <dd>
-                    <p class="tit t6">品牌团</p>
-                    <p class="txt">大品牌,大折扣</p>
-                </dd>
-            </dl>
-            <dl class="add_item huamei_1" data-url="/">
-                <dt class="img">
-                    <img src="\static\jwap\images\waptubiao\icon_tit7.jpg" width="52" height="52">
-                </dt>
-                <dd>
-                    <p class="tit t7">天猫精选</p>
-                    <p class="txt">总有你想要的</p>
-                </dd>
-            </dl>
-            <dl class="add_item huamei_1" data-url="{:U('article/index')}">
-                <dt class="img">
-                    <img src="\static\jwap\images\waptubiao\icon_tit8.png" width="52" height="52">
-                </dt>
-                <dd>
-                    <p class="tit">
-                        <span class="fc_orange">时尚美文</span><span class="icon_bestBuy">精选</span>
-                    </p>
-                    <p class="txt">滋润心灵的汤药</p>
-                </dd>
-            </dl>
-            <dl class="add_item huamei_1" data-url="{:U('dapei/index')}">
-                <dt class="img">
-                    <img src="\static\jwap\images\waptubiao\icon_tit9.png" width="52" height="52">
-                </dt>
-                <dd>
-                    <p class="tit">
-                        <span class="fc_orangeRed">时尚搭配</span><span class="icon_saleShop">热门</span>
-                    </p>
-                    <p class="txt">把钱花到刀刃上</p>
-                </dd>
-            </dl>
-        </div>
+        
     </div>
 
 
@@ -134,8 +93,8 @@
 <div id="goods">
 <section class="goods" id="goods">
     <ul class="goods-list clear">
-<include file='public:itemlist'/>   
-    </ul>
+<include file='public:itemlist'/>	
+	</ul>
 </section>
 <div class="paging">
 <div class="paging-nav next">
