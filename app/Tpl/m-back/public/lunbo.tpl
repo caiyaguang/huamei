@@ -1,1 +1,0 @@
-{:R('advert/index', array(12), 'Widget')}
