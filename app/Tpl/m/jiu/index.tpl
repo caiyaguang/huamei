@@ -10,7 +10,7 @@
         <div class="app">
             <header id="head" class="head">
                 <div class="fixtop">
-                    <span id="t-find"><a href="javascript:window.history.go(-1)" class="btn btn-left btn-back" title="返回上一页"></a></span>
+                    <span id="t-find"><a href="javascript:window.history.go(-1)" class="btn btn-left btn-back" title="返回上一页 "></a></span>
                     <span id="t-index">{$cinfo.name}</span>
                     <span id="classify" class="classify"><a href="javascript:;" class="btn btn-left btn-type"></a></span>
                 </div>
