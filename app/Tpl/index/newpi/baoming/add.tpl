@@ -716,6 +716,7 @@ $("#smt").click(function() {
             if(result.status == 1){
 			    $.dialog({id:'goods_baoadd_success', title:lang.tips, content:result.data, padding:'', fixed:true, lock:true});
                         }else{
+                        	echo(result.msg)
                             $.ftxia.tip({content:result.msg, icon:'error'});
                         }
                     }
